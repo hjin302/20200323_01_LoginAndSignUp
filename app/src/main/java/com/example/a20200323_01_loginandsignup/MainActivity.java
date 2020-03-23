@@ -10,6 +10,7 @@ import android.widget.CompoundButton;
 
 import com.example.a20200323_01_loginandsignup.databinding.ActivityMainBinding;
 import com.example.a20200323_01_loginandsignup.utils.ContextUtil;
+import com.example.a20200323_01_loginandsignup.utils.ServerUtil;
 
 public class MainActivity extends BaseActivity {
 
@@ -62,7 +63,10 @@ public class MainActivity extends BaseActivity {
                     ContextUtil.setEmail(mContext, "");
                 }
 
+                String inputEmail = binding.emailEdt.getText().toString();
+                String inputPw = binding.pwEdt.getText().toString();
 
+                ServerUtil.postRequestLogin(mContext, inputEmail, inputPw, null);
 
             }
         });
