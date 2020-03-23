@@ -12,6 +12,8 @@ import com.example.a20200323_01_loginandsignup.databinding.ActivityMainBinding;
 import com.example.a20200323_01_loginandsignup.utils.ContextUtil;
 import com.example.a20200323_01_loginandsignup.utils.ServerUtil;
 
+import org.json.JSONObject;
+
 public class MainActivity extends BaseActivity {
 
     ActivityMainBinding binding = null;
@@ -63,10 +65,20 @@ public class MainActivity extends BaseActivity {
                     ContextUtil.setEmail(mContext, "");
                 }
 
+
                 String inputEmail = binding.emailEdt.getText().toString();
                 String inputPw = binding.pwEdt.getText().toString();
 
-                ServerUtil.postRequestLogin(mContext, inputEmail, inputPw, null);
+                ServerUtil.postRequestLogin(mContext, inputEmail, inputPw, new ServerUtil.JsonResponseHandler() {
+                    @Override
+                    public void onResponse(JSONObject json) {
+
+                        Log.d("JSON내용-메인에서", json.toString());
+
+                    }
+                });
+
+
 
             }
         });
